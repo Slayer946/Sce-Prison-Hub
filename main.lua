@@ -2341,7 +2341,7 @@ do
 				break
 			end
 		until not game
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Target.Name.." is dead everyone is nuke", "ALL")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Target.Name.." IS DEAD NUKE LAUNCHING!!!", "ALL")
 		wait(1.5)
 		--//This is what I call perfect work 
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("everyone in 3", "ALL")
@@ -2351,7 +2351,7 @@ do
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("everyone in 1", "ALL")
 		wait(1)
 		API:killall()
-		API:Notif("kill all.")
+		API:Notif("Nuke from player has been removed.")
 	end,nil,"[PLAYER]")
 	API:CreateCmd("to", "Teleports to a player", function(args)
 		local Player = API:FindPlayer(args[2])
