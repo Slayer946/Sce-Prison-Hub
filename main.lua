@@ -48,18 +48,18 @@ local Prefix = "!"
 
 Folder.Name = "SCE_PRISON_HUB_loaded"
 
-
+-- --------------------------------------------------------------------------------------
 ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = tostring(math.random())
 ScreenGui.Parent = game:GetService("CoreGui") or gethui()
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-
+-- --------------------------------------------------------------------------------------
 CmdBarFrame = Instance.new("Frame")
 CmdBarFrame.Name = "CmdBarFrame"
 CmdBarFrame.Parent = ScreenGui
 CmdBarFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-CmdBarFrame.BackgroundColor3 = Color3.fromRGB(30, 144, 255) 
+CmdBarFrame.BackgroundColor3 = Color3.fromRGB(0, 128, 255)
 CmdBarFrame.BackgroundTransparency = 1.000
 CmdBarFrame.BorderSizePixel = 0
 CmdBarFrame.Position = UDim2.new(0.5, 0, 0.899999998, 0)
@@ -153,7 +153,7 @@ TEMP_CMD.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 TEMP_CMD.BackgroundTransparency = 0.750
 TEMP_CMD.Size = UDim2.new(0, 455, 0, 14)
 TEMP_CMD.Font = Enum.Font.SourceSans
-TEMP_CMD.Text = "sex" -- Exemple de texte temporaire
+TEMP_CMD.Text = "sce team on top" 
 TEMP_CMD.TextColor3 = Color3.fromRGB(255, 255, 255)
 TEMP_CMD.TextSize = 14.000
 
@@ -239,7 +239,6 @@ function API:CreateCmd(Header, Description, Callback, IsHide, Extra, IsPre, plsd
 		end
 	end)
 end
-
 
 
 function API:Tween(Obj, Prop, New, Time)
