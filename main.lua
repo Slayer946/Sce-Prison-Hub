@@ -43,7 +43,7 @@ ScreenGui.Name = math.random()
 CmdBarFrame.Name = "CmdBarFrame"
 CmdBarFrame.Parent = ScreenGui
 CmdBarFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-CmdBarFrame.BackgroundColor3 = Color3.fromRGB(135, 206, 250)
+CmdBarFrame.BackgroundColor3 = Color3.fromRGB(0, 128, 255)
 CmdBarFrame.BackgroundTransparency = 1.000
 CmdBarFrame.BorderSizePixel = 0
 CmdBarFrame.Position = UDim2.new(0.5, 0, 0.899999998, 0)
@@ -61,7 +61,7 @@ do
 
 	CmdsIcon.Name = "CmdsIcon"
 	CmdsIcon.Parent = CmdBarFrame
-	CmdsIcon.BackgroundColor3 = Color3.fromRGB(135, 206, 250)
+	CmdsIcon.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	CmdsIcon.Position = UDim2.new(-0.132423401, 0, 0.0226149559, 0)
 	CmdsIcon.Size = UDim2.new(0.121672593, 0, 0.945454538, 0)
 	CmdsIcon.Image = "rbxassetid://12661800163"
@@ -74,7 +74,7 @@ do
 
 	CmdButton.Name = "CmdButton"
 	CmdButton.Parent = CmdsIcon
-	CmdButton.BackgroundColor3 = Color3.fromRGB(135, 206, 250)
+	CmdButton.BackgroundColor3 = Color3.fromRGB(0, 128, 255)
 	CmdButton.BackgroundTransparency = 1.000
 	CmdButton.Position = UDim2.new(0.298999995, 0, 0.27700001, 0)
 	CmdButton.Size = UDim2.new(0, 27, 0, 27)
@@ -143,7 +143,7 @@ do
 
 	tempb.Name = "tempb"
 	tempb.Parent = ScreenGui
-	tempb.BackgroundColor3 = Color3.fromRGB(135, 206, 250)
+	tempb.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	tempb.BackgroundTransparency = 0.550
 	tempb.Position = UDim2.new(0, 0, -7.47979882e-08, 0)
 	tempb.Size = UDim2.new(0, 539, 0, 44)
@@ -174,7 +174,7 @@ UICorner_2.Parent = Out
 
 CommandBar.Name = "CommandBar"
 CommandBar.Parent = Out
-CommandBar.BackgroundColor3 = Color3.fromRGB(135, 206, 250)
+CommandBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 CommandBar.BackgroundTransparency = 1.000
 CommandBar.BorderSizePixel = 0
 CommandBar.Position = UDim2.new(0.0359953903, 0, 0.128254473, 0)
@@ -183,7 +183,7 @@ CommandBar.Font = Enum.Font.SourceSans
 CommandBar.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
 CommandBar.PlaceholderText = "Command bar"
 CommandBar.Text = ""
-CommandBar.TextColor3 = Color3.fromRGB(255, 0, 0)
+CommandBar.TextColor3 = Color3.fromRGB(255, 255, 255)
 CommandBar.TextSize = 24.000
 CommandBar.TextTransparency = 0.140
 CommandBar.TextWrapped = true
