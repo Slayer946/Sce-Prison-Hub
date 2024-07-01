@@ -2335,7 +2335,7 @@ do
 	end,nil,"[PLAYER]")
 	API:CreateCmd("addnuke", "Player dies everyone dies", function(args)
 		local Target = API:FindPlayer(args[2])
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!!!A NUKE HAS BEEN PLACED ON "..Target.Name.." kiil everyone", "ALL")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!!!A NUKE WAS PLACED ON "..Target.Name.." kiil everyone", "ALL")
 		repeat task.wait()
 			if Target.Character and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health <1 then
 				break
