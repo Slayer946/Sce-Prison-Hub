@@ -1,4 +1,4 @@
--- Vérifie si les fonctions nécessaires sont disponibles
+-- --------------------------------------------------------------------------------------
 if not getconnections or not hookmetamethod or not getnamecallmethod or not ((getgenv and getgenv()) or _G) then
 	game:GetService("StarterGui"):SetCore("SendNotification", {
 		Title = "SCE PRISON HUB",
@@ -8,7 +8,7 @@ if not getconnections or not hookmetamethod or not getnamecallmethod or not ((ge
 	return
 end
 
--- Vérifie si l'objet "Criminals Spawn" existe et s'il contient "SpawnLocation"
+-- --------------------------------------------------------------------------------------
 if not workspace:FindFirstChild("Criminals Spawn") or not workspace:FindFirstChild("Criminals Spawn"):FindFirstChild("SpawnLocation") then
 	game:GetService("StarterGui"):SetCore("SendNotification", {
 		Title = "SCE PRISON HUB",
@@ -18,28 +18,28 @@ if not workspace:FindFirstChild("Criminals Spawn") or not workspace:FindFirstChi
 	return
 end
 
--- Attends que HumanoidRootPart soit disponible dans le personnage du joueur local
+-- --------------------------------------------------------------------------------------
 game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 
--- Vérifie si l'objet "SCE_PRISON_HUB_loaded" existe déjà
+-- --------------------------------------------------------------------------------------
 if game:FindFirstChild("SCE_PRISON_HUB_loaded") then
 	((getgenv and getgenv()) or _G).NotifTiger("SCE PRISON HUB is already executed!", false)
 	warn("Already loaded")
 	return
 end
 
--- Définition des variables principales
+-- --------------------------------------------------------------------------------------
 local Player = game:GetService("Players").LocalPlayer
 local Folder = Instance.new("Folder", game)
 local UserInputService = game:GetService("UserInputService")
 local GlobalVar = ((getgenv and getgenv()) or _G)
 local CriminalCFRAME = workspace["Criminals Spawn"].SpawnLocation.CFrame
 
--- Chargement du module externe Listing.lua depuis GitHub
+-- --------------------------------------------------------------------------------------
 local API_Prem = loadstring(game:HttpGet("https://raw.githubusercontent.com/dalloc2/Roblox/main/Listing.lua"))()
 local PremiumActivated = API_Prem.CheckPremium()
 
--- Définition des tables et variables temporaires
+-- --------------------------------------------------------------------------------------
 local Temp = {}
 local API = {}
 local Reload_Guns = {}
@@ -48,29 +48,29 @@ local Prefix = "!"
 
 Folder.Name = "SCE_PRISON_HUB_loaded"
 
--- Création de l'objet ScreenGui
+
 ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = tostring(math.random())
 ScreenGui.Parent = game:GetService("CoreGui") or gethui()
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- Création du cadre CmdBarFrame
+
 CmdBarFrame = Instance.new("Frame")
 CmdBarFrame.Name = "CmdBarFrame"
 CmdBarFrame.Parent = ScreenGui
 CmdBarFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-CmdBarFrame.BackgroundColor3 = Color3.fromRGB(0, 128, 255)
+CmdBarFrame.BackgroundColor3 = Color3.fromRGB(30, 144, 255) 
 CmdBarFrame.BackgroundTransparency = 1.000
 CmdBarFrame.BorderSizePixel = 0
 CmdBarFrame.Position = UDim2.new(0.5, 0, 0.899999998, 0)
 CmdBarFrame.Size = UDim2.new(0, 577, 0, 65)
 
--- Ajout du coin arrondi au cadre CmdBarFrame
+
 UICorner = Instance.new("UICorner")
 UICorner.CornerRadius = UDim.new(0, 3)
 UICorner.Parent = CmdBarFrame
 
--- Création de Out, une ImageLabel dans CmdBarFrame
+
 Out = Instance.new("ImageLabel")
 Out.Name = "Out"
 Out.Parent = CmdBarFrame
@@ -80,12 +80,12 @@ Out.Size = UDim2.new(0.974358976, 0, 0.945454538, 0)
 Out.Image = "rbxassetid://11789397066"
 Out.ImageTransparency = 0.240
 
--- Ajout du coin arrondi à Out
+
 UICorner_2 = Instance.new("UICorner")
 UICorner_2.CornerRadius = UDim.new(0, 6)
 UICorner_2.Parent = Out
 
--- Création de CommandBar, une TextBox dans Out
+
 CommandBar = Instance.new("TextBox")
 CommandBar.Name = "CommandBar"
 CommandBar.Parent = Out
@@ -103,11 +103,11 @@ CommandBar.TextSize = 24.000
 CommandBar.TextTransparency = 0.140
 CommandBar.TextWrapped = true
 
--- Ajout du trait de bordure à Out
+
 UIStroke = Instance.new("UIStroke")
 UIStroke.Parent = Out
 
--- Création de Commands, une ImageLabel dans ScreenGui (panneau qui contiendra les commandes)
+
 Commands = Instance.new("ImageLabel")
 Commands.Name = "Commands"
 Commands.Parent = ScreenGui
@@ -119,16 +119,16 @@ Commands.Image = "rbxassetid://12011977394"
 Commands.ImageTransparency = 0.200
 Commands.Visible = false
 
--- Ajout du coin arrondi à Commands
+
 UICorner_3 = Instance.new("UICorner")
 UICorner_3.CornerRadius = UDim.new(0, 6)
 UICorner_3.Parent = Commands
 
--- Ajout du trait de bordure à Commands
+
 UIStroke_2 = Instance.new("UIStroke")
 UIStroke_2.Parent = Commands
 
--- Création de CommandsList, un ScrollingFrame dans Commands
+
 CommandsList = Instance.new("ScrollingFrame")
 CommandsList.Name = "CommandsList"
 CommandsList.Parent = Commands
@@ -140,13 +140,13 @@ CommandsList.Size = UDim2.new(0, 455, 0, 274)
 CommandsList.ScrollBarThickness = 5
 CommandsList.AutomaticCanvasSize = Enum.AutomaticSize.Y
 
--- Ajout du layout pour la liste dans CommandsList
+
 UIListLayout = Instance.new("UIListLayout")
 UIListLayout.Parent = CommandsList
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout.Padding = UDim.new(0, 8)
 
--- Création de TEMP_CMD, un TextLabel pour afficher les commandes temporaires
+
 TEMP_CMD = Instance.new("TextLabel")
 TEMP_CMD.Parent = Folder
 TEMP_CMD.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
@@ -157,10 +157,10 @@ TEMP_CMD.Text = "sex" -- Exemple de texte temporaire
 TEMP_CMD.TextColor3 = Color3.fromRGB(255, 255, 255)
 TEMP_CMD.TextSize = 14.000
 
--- Position sauvegardée de Commands pour les animations
+
 SavedCmdsPosition = Commands.Position
 
--- Création de SearchBar, une TextBox dans Commands pour la recherche
+
 SearchBar = Instance.new("TextBox")
 SearchBar.Parent = Commands
 SearchBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -173,27 +173,27 @@ SearchBar.Text = ""
 SearchBar.TextColor3 = Color3.fromRGB(234, 234, 234)
 SearchBar.TextSize = 14.000
 
--- Parentage de Folder à game
+
 Folder.Parent = game
 
--- Préchargement des éléments GUI
+
 game:GetService("ContentProvider"):PreloadAsync({
 	Commands,
 	Out,
 })
 
--- Génération de GUID pour tous les descendants de ScreenGui
+
 for _, v in pairs(ScreenGui:GetDescendants()) do
 	if v:IsA("GuiObject") then
 		v.Name = game:GetService("HttpService"):GenerateGUID(false)
 	end
 end
 
--- Variables et fonctions pour la gestion des commandes
+
 local AmmountCurrent = 0
 local commandsLol = {}
 
--- Fonction pour créer une commande
+
 function API:CreateCmd(Header, Description, Callback, IsHide, Extra, IsPre, plsdonotlower)
 	local CloneTXT = TEMP_CMD:Clone()
 	CloneTXT.Text = Prefix..Header.." "..(Extra or "").." | "..Description
@@ -239,6 +239,7 @@ function API:CreateCmd(Header, Description, Callback, IsHide, Extra, IsPre, plsd
 		end
 	end)
 end
+
 
 
 function API:Tween(Obj, Prop, New, Time)
