@@ -2341,7 +2341,7 @@ do
 				break
 			end
 		until not game
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Target.Name.." IS DEAD NUKE LAUNCHING!!!", "ALL")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Target.Name.." IS DEAD NUKE everyone!!!", "ALL")
 		wait(1.5)
 		--//This is what I call perfect work 
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("everyone in 3", "ALL")
