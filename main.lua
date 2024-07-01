@@ -1,45 +1,61 @@
+-- Vérifie si les fonctions nécessaires sont disponibles
 if not getconnections or not hookmetamethod or not getnamecallmethod or not ((getgenv and getgenv()) or _G) then
-	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "SCE PRISON HUB",Text = "Executor is not supported!",Duration = 10,})
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "SCE PRISON HUB",
+		Text = "Executor is not supported!",
+		Duration = 10,
+	})
+	return
 end
+
+-- Vérifie si l'objet "Criminals Spawn" existe et s'il contient "SpawnLocation"
 if not workspace:FindFirstChild("Criminals Spawn") or not workspace:FindFirstChild("Criminals Spawn"):FindFirstChild("SpawnLocation") then
-	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "SCE PRISON HUB",Text = "Criminals spawn not found! Please rejoin.",Duration = 10,})
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "SCE PRISON HUB",
+		Text = "Criminals spawn not found! Please rejoin.",
+		Duration = 10,
+	})
+	return
 end
+
+-- Attends que HumanoidRootPart soit disponible dans le personnage du joueur local
 game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-if game:FindFirstChild("SCE_PRISON_HUB_loaded") then  ((getgenv and getgenv()) or _G).NotifTiger("SCE PRISON HUB is already executed!",false) return warn("Already loaded") end
-local Player, plr,Folder = game:GetService("Players").LocalPlayer, game:GetService("Players").LocalPlayer,Instance.new("Folder",game)
-local OldHook, hookmetamethod, getnamecallmethod = nil, hookmetamethod, getnamecallmethod
-local HasGamepass,UserInputService = game:GetService("MarketplaceService"):UserOwnsGamePassAsync(Player.UserId, 96651),game:GetService("UserInputService")
+
+-- Vérifie si l'objet "SCE_PRISON_HUB_loaded" existe déjà
+if game:FindFirstChild("SCE_PRISON_HUB_loaded") then
+	((getgenv and getgenv()) or _G).NotifTiger("SCE PRISON HUB is already executed!", false)
+	warn("Already loaded")
+	return
+end
+
+-- Définition des variables principales
+local Player = game:GetService("Players").LocalPlayer
+local Folder = Instance.new("Folder", game)
+local UserInputService = game:GetService("UserInputService")
 local GlobalVar = ((getgenv and getgenv()) or _G)
-local Unloaded = false
 local CriminalCFRAME = workspace["Criminals Spawn"].SpawnLocation.CFrame
+
+-- Chargement du module externe Listing.lua depuis GitHub
 local API_Prem = loadstring(game:HttpGet("https://raw.githubusercontent.com/dalloc2/Roblox/main/Listing.lua"))()
 local PremiumActivated = API_Prem.CheckPremium()
 
+-- Définition des tables et variables temporaires
 local Temp = {}
 local API = {}
 local Reload_Guns = {}
 local Prefix = "!"
 
---------
-Folder.Name = "SCE_PRISON_HUB_loaded"
-ScreenGui = Instance.new("ScreenGui")
-CmdBarFrame = Instance.new("Frame")
-UICorner = Instance.new("UICorner")
-Out = Instance.new("ImageLabel")
-UICorner_2 = Instance.new("UICorner")
-CommandBar = Instance.new("TextBox")
-UIStroke = Instance.new("UIStroke")
-Commands = Instance.new("ImageLabel")
-UICorner_3 = Instance.new("UICorner")
-UIStroke_2 = Instance.new("UIStroke")
-CommandsList = Instance.new("ScrollingFrame")
-UIListLayout = Instance.new("UIListLayout")
-TEMP_CMD = Instance.new("TextLabel")
-SearchBar = Instance.new("TextBox")
-ScreenGui.Parent = (game:GetService("CoreGui") or gethui())
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.Name = math.random()
 
+Folder.Name = "SCE_PRISON_HUB_loaded"
+
+-- Création de l'objet ScreenGui
+ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = tostring(math.random())
+ScreenGui.Parent = game:GetService("CoreGui") or gethui()
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- Création du cadre CmdBarFrame
+CmdBarFrame = Instance.new("Frame")
 CmdBarFrame.Name = "CmdBarFrame"
 CmdBarFrame.Parent = ScreenGui
 CmdBarFrame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -47,120 +63,15 @@ CmdBarFrame.BackgroundColor3 = Color3.fromRGB(0, 128, 255)
 CmdBarFrame.BackgroundTransparency = 1.000
 CmdBarFrame.BorderSizePixel = 0
 CmdBarFrame.Position = UDim2.new(0.5, 0, 0.899999998, 0)
-CmdBarFrame.Position = CmdBarFrame.Position+UDim2.new(0,0,1.1,0)
 CmdBarFrame.Size = UDim2.new(0, 577, 0, 65)
 
+-- Ajout du coin arrondi au cadre CmdBarFrame
+UICorner = Instance.new("UICorner")
 UICorner.CornerRadius = UDim.new(0, 3)
 UICorner.Parent = CmdBarFrame
-Temp.Esps = {}
-do
-	CmdsIcon = Instance.new("ImageLabel")
-	UICornera = Instance.new("UICorner")
-	UIStroke12 = Instance.new("UIStroke")
-	CmdButton = Instance.new("ImageButton")
 
-	CmdsIcon.Name = "CmdsIcon"
-	CmdsIcon.Parent = CmdBarFrame
-	CmdsIcon.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	CmdsIcon.Position = UDim2.new(-0.132423401, 0, 0.0226149559, 0)
-	CmdsIcon.Size = UDim2.new(0.121672593, 0, 0.945454538, 0)
-	CmdsIcon.Image = "rbxassetid://12661800163"
-	CmdsIcon.ImageTransparency = 0.030
-
-	UICornera.CornerRadius = UDim.new(0, 6)
-	UICornera.Parent = CmdsIcon
-
-	UIStroke12.Parent = CmdsIcon
-
-	CmdButton.Name = "CmdButton"
-	CmdButton.Parent = CmdsIcon
-	CmdButton.BackgroundColor3 = Color3.fromRGB(0, 128, 255)
-	CmdButton.BackgroundTransparency = 1.000
-	CmdButton.Position = UDim2.new(0.298999995, 0, 0.27700001, 0)
-	CmdButton.Size = UDim2.new(0, 27, 0, 27)
-	CmdButton.Image = "rbxassetid://11570802781"
-	CmdButton.ImageTransparency = 0.430
-	CmdButton.MouseButton1Up:Connect(function()
-		if not Temp.CmdsC then
-			Temp.CmdsC = true
-			if Commands.Visible == false then
-				Commands:TweenPosition(SavedCmdsPosition,"Out","Quart",1)
-				Commands.Visible = true
-			else
-				Commands:TweenPosition(SavedCmdsPosition+UDim2.new(0,0,1,0),"Out","Quart",1)
-				wait(.5)
-				Commands.Visible = false
-			end
-			wait(.7)
-			Temp.CmdsC = false
-		end
-	end)
-	CmdButton.MouseEnter:Connect(function()
-		CmdButton.ImageColor3 = Color3.new(0.588235, 0.588235, 0.588235)
-	end)
-	CmdButton.MouseLeave:Connect(function()
-		CmdButton.ImageColor3 = Color3.new(1, 1, 1)
-	end)
-end
-do
-	Toggles = Instance.new("ImageLabel")
-	local Stokeee = Instance.new("UIStroke")
-	local Corrrer = Instance.new("UICorner")
-	local ToggleScroll = Instance.new("ScrollingFrame")
-	local kewkfwe = Instance.new("UIListLayout")
-	local tempb = Instance.new("TextButton")
-	local UIStroke = Instance.new("UIStroke")
-	local UICorner = Instance.new("UICorner")
-
-	Toggles.Name = "Toggles"
-	Toggles.Parent = ScreenGui
-	Toggles.AnchorPoint = Vector2.new(0.5, 0.5)
-	Toggles.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Toggles.Position = UDim2.new(0.499593854, 0, 0.499376595, 0)+UDim2.new(0,0,1,0)
-	Toggles.Size = UDim2.new(0, 539, 0, 409)
-	Toggles.Visible = false
-	Toggles.Image = "rbxassetid://12011977394"
-	Toggles.ImageTransparency = 0.260
-
-	Stokeee.Parent = Toggles
-	Stokeee.Name = "Stokeee"
-
-	Corrrer.Name = "Corrrer"
-	Corrrer.Parent = Toggles
-
-	ToggleScroll.Name = "ToggleScroll"
-	ToggleScroll.Parent = Toggles
-	ToggleScroll.Active = true
-	ToggleScroll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ToggleScroll.BackgroundTransparency = 1.000
-	ToggleScroll.Size = UDim2.new(0, 539, 0, 408)
-	ToggleScroll.ScrollBarThickness = 4
-
-	kewkfwe.Name = "kewkfwe"
-	kewkfwe.Parent = ToggleScroll
-	kewkfwe.SortOrder = Enum.SortOrder.LayoutOrder
-	kewkfwe.Padding = UDim.new(0, 5)
-
-	tempb.Name = "tempb"
-	tempb.Parent = ScreenGui
-	tempb.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	tempb.BackgroundTransparency = 0.550
-	tempb.Position = UDim2.new(0, 0, -7.47979882e-08, 0)
-	tempb.Size = UDim2.new(0, 539, 0, 44)
-	tempb.Visible = false
-	tempb.Font = Enum.Font.SourceSans
-	tempb.Text = "Autorespawn [OFF]"
-	tempb.TextColor3 = Color3.fromRGB(255, 255, 255)
-	tempb.TextSize = 14.000
-
-	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Parent = tempb
-
-	UICorner.CornerRadius = UDim.new(0, 3)
-	UICorner.Parent = tempb
-
-end
-
+-- Création de Out, une ImageLabel dans CmdBarFrame
+Out = Instance.new("ImageLabel")
 Out.Name = "Out"
 Out.Parent = CmdBarFrame
 Out.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -169,9 +80,13 @@ Out.Size = UDim2.new(0.974358976, 0, 0.945454538, 0)
 Out.Image = "rbxassetid://11789397066"
 Out.ImageTransparency = 0.240
 
+-- Ajout du coin arrondi à Out
+UICorner_2 = Instance.new("UICorner")
 UICorner_2.CornerRadius = UDim.new(0, 6)
 UICorner_2.Parent = Out
 
+-- Création de CommandBar, une TextBox dans Out
+CommandBar = Instance.new("TextBox")
 CommandBar.Name = "CommandBar"
 CommandBar.Parent = Out
 CommandBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -188,8 +103,12 @@ CommandBar.TextSize = 24.000
 CommandBar.TextTransparency = 0.140
 CommandBar.TextWrapped = true
 
+-- Ajout du trait de bordure à Out
+UIStroke = Instance.new("UIStroke")
 UIStroke.Parent = Out
 
+-- Création de Commands, une ImageLabel dans ScreenGui (panneau qui contiendra les commandes)
+Commands = Instance.new("ImageLabel")
 Commands.Name = "Commands"
 Commands.Parent = ScreenGui
 Commands.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -200,11 +119,18 @@ Commands.Image = "rbxassetid://12011977394"
 Commands.ImageTransparency = 0.200
 Commands.Visible = false
 
+-- Ajout du coin arrondi à Commands
+UICorner_3 = Instance.new("UICorner")
 UICorner_3.CornerRadius = UDim.new(0, 6)
 UICorner_3.Parent = Commands
 
+-- Ajout du trait de bordure à Commands
+UIStroke_2 = Instance.new("UIStroke")
 UIStroke_2.Parent = Commands
 
+-- Création de CommandsList, un ScrollingFrame dans Commands
+CommandsList = Instance.new("ScrollingFrame")
+CommandsList.Name = "CommandsList"
 CommandsList.Parent = Commands
 CommandsList.Active = true
 CommandsList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -212,20 +138,30 @@ CommandsList.BackgroundTransparency = 1.000
 CommandsList.Position = UDim2.new(0, 0, 0.077441074, 0)
 CommandsList.Size = UDim2.new(0, 455, 0, 274)
 CommandsList.ScrollBarThickness = 5
-CommandsList.AutomaticCanvasSize="Y"
+CommandsList.AutomaticCanvasSize = Enum.AutomaticSize.Y
+
+-- Ajout du layout pour la liste dans CommandsList
+UIListLayout = Instance.new("UIListLayout")
 UIListLayout.Parent = CommandsList
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout.Padding = UDim.new(0, 8)
 
+-- Création de TEMP_CMD, un TextLabel pour afficher les commandes temporaires
+TEMP_CMD = Instance.new("TextLabel")
 TEMP_CMD.Parent = Folder
 TEMP_CMD.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
 TEMP_CMD.BackgroundTransparency = 0.750
 TEMP_CMD.Size = UDim2.new(0, 455, 0, 14)
 TEMP_CMD.Font = Enum.Font.SourceSans
-TEMP_CMD.Text = "sex"--//yes
+TEMP_CMD.Text = "sex" -- Exemple de texte temporaire
 TEMP_CMD.TextColor3 = Color3.fromRGB(255, 255, 255)
 TEMP_CMD.TextSize = 14.000
+
+-- Position sauvegardée de Commands pour les animations
 SavedCmdsPosition = Commands.Position
+
+-- Création de SearchBar, une TextBox dans Commands pour la recherche
+SearchBar = Instance.new("TextBox")
 SearchBar.Parent = Commands
 SearchBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 SearchBar.BackgroundTransparency = 1.000
@@ -237,71 +173,73 @@ SearchBar.Text = ""
 SearchBar.TextColor3 = Color3.fromRGB(234, 234, 234)
 SearchBar.TextSize = 14.000
 
+-- Parentage de Folder à game
 Folder.Parent = game
 
-do
-	--Load guis
-	game:GetService("ContentProvider"):PreloadAsync({
-		Commands,
-		Out,
-	})
+-- Préchargement des éléments GUI
+game:GetService("ContentProvider"):PreloadAsync({
+	Commands,
+	Out,
+})
+
+-- Génération de GUID pour tous les descendants de ScreenGui
+for _, v in pairs(ScreenGui:GetDescendants()) do
+	if v:IsA("GuiObject") then
+		v.Name = game:GetService("HttpService"):GenerateGUID(false)
+	end
 end
 
-for i,v in pairs(ScreenGui:GetDescendants()) do v.Name = game:GetService("HttpService"):GenerateGUID(true) end
+-- Variables et fonctions pour la gestion des commandes
 local AmmountCurrent = 0
 local commandsLol = {}
-function API:CreateCmd(Header, Description, Callback,IsHide,Extra,IsPre,plsdonotlower)
+
+-- Fonction pour créer une commande
+function API:CreateCmd(Header, Description, Callback, IsHide, Extra, IsPre, plsdonotlower)
 	local CloneTXT = TEMP_CMD:Clone()
 	CloneTXT.Text = Prefix..Header.." "..(Extra or "").." | "..Description
-	if IsHide then
-		CloneTXT.Parent =nil
-	else
-		CloneTXT.Parent = CommandsList
-	end
+	CloneTXT.Parent = IsHide and nil or CommandsList
 	if IsPre then
 		CloneTXT.TextColor3 = Color3.new(1, 0.796078, 0.0666667)
 	end
-	AmmountCurrent=AmmountCurrent+1
-    commandsLol[Header] = Callback
+	AmmountCurrent = AmmountCurrent + 1
+	commandsLol[Header] = Callback
+
 	local function FactCheck(TheText)
 		if Unloaded then return end
-		local Text = nil
-		if not plsdonotlower then
-			Text=TheText:lower()
-		else
-			Text = TheText
-		end
+		local Text = not plsdonotlower and TheText:lower() or TheText
 		local Split = Text:split(" ")
 		local First = Split[1]
-		local Second = Split[2]
 
 		if First:lower() == Header:lower() or First:lower() == Prefix..Header:lower() then
-			local a,b = pcall(function()
+			local success, error = pcall(function()
 				Callback(Split)
 			end)
-			if not a and b then
+			if not success and error then
 				warn("--> SCE PRISON HUB DETECTED AN ERROR")
 				warn("COMMAND: "..Prefix..Header)
-				warn("ERROR: "..tostring(b))
+				warn("ERROR: "..tostring(error))
 			end
 		end
 	end
-	Player.Chatted:Connect(function(c)
-		if c and not Unloaded then
-			local Subbed = string.sub(c,1,1)
+
+	Player.Chatted:Connect(function(ChatMessage)
+		if ChatMessage and not Unloaded then
+			local Subbed = string.sub(ChatMessage, 1, 1)
 			if Subbed == Prefix then
-				FactCheck(c)
+				FactCheck(ChatMessage)
 			end
 		end
 	end)
-	CommandBar.FocusLost:Connect(function(EnterKey)
-		if EnterKey and not Unloaded then
+
+	CommandBar.FocusLost:Connect(function(EnterPressed)
+		if EnterPressed and not Unloaded then
 			FactCheck(CommandBar.Text)
-			task.wait(.04)
+			task.wait(0.04)
 			CommandBar.Text = ""
 		end
 	end)
 end
+
 
 function API:Tween(Obj, Prop, New, Time)
 	if not Time then
