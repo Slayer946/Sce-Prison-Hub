@@ -42,35 +42,36 @@ ScreenGui.Name = math.random()
 
 CmdBarFrame.Name = "CmdBarFrame"
 CmdBarFrame.Parent = ScreenGui
-CmdBarFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-CmdBarFrame.BackgroundColor3 = Color3.fromRGB(135, 206, 250)
-CmdBarFrame.BackgroundTransparency = 1.000
-CmdBarFrame.BorderSizePixel = 0
-CmdBarFrame.Position = UDim2.new(0.5, 0, 0.899999998, 0)
-CmdBarFrame.Position = CmdBarFrame.Position+UDim2.new(0,0,1.1,0)
-CmdBarFrame.Size = UDim2.new(0, 577, 0, 65)
+CmdBarFrame.AnchorPoint = Vector2.new(0.5, 0.5) 
+CmdBarFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+CmdBarFrame.BackgroundTransparency = 0.5 
+CmdBarFrame.BorderSizePixel = 2 
+CmdBarFrame.Position = UDim2.new(0.5, 0, 0.95, 0) 
+CmdBarFrame.Size = UDim2.new(0, 400, 0, 50) 
 
-UICorner.CornerRadius = UDim.new(0, 3)
+
+UICorner.CornerRadius = UDim.new(0, 10) 
 UICorner.Parent = CmdBarFrame
-Temp.Esps = {}
+
 do
-	CmdsIcon = Instance.new("ImageLabel")
-	UICornera = Instance.new("UICorner")
-	UIStroke12 = Instance.new("UIStroke")
-	CmdButton = Instance.new("ImageButton")
+    CmdsIcon = Instance.new("ImageLabel")
+    UICornera = Instance.new("UICorner")
+    UIStroke12 = Instance.new("UIStroke")
+    CmdButton = Instance.new("ImageButton")
 
-	CmdsIcon.Name = "CmdsIcon"
-	CmdsIcon.Parent = CmdBarFrame
-	CmdsIcon.BackgroundColor3 = Color3.fromRGB(135, 206, 250)
-	CmdsIcon.Position = UDim2.new(-0.132423401, 0, 0.0226149559, 0)
-	CmdsIcon.Size = UDim2.new(0.121672593, 0, 0.945454538, 0)
-	CmdsIcon.Image = "rbxassetid://12661800163"
-	CmdsIcon.ImageTransparency = 0.030
+    CmdsIcon.Name = "CmdsIcon"
+    CmdsIcon.Parent = CmdBarFrame
+    CmdsIcon.BackgroundColor3 = Color3.fromRGB(135, 206, 250)
+    CmdsIcon.Position = UDim2.new(-0.132423401, 0, 0.0226149559, 0)
+    CmdsIcon.Size = UDim2.new(0.121672593, 0, 0.945454538, 0)
+    CmdsIcon.Image = "rbxassetid://12661800163"
+    CmdsIcon.ImageTransparency = 0.030
 
-	UICornera.CornerRadius = UDim.new(0, 6)
-	UICornera.Parent = CmdsIcon
+    UICornera.CornerRadius = UDim.new(0, 12) 
+    UICornera.Parent = CmdsIcon
 
-	UIStroke12.Parent = CmdsIcon
+    UIStroke12.Parent = CmdsIcon
+end
 
 	CmdButton.Name = "CmdButton"
 	CmdButton.Parent = CmdsIcon
