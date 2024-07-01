@@ -2335,7 +2335,7 @@ do
 	end,nil,"[PLAYER]")
 	API:CreateCmd("addnuke", "Player dies everyone dies", function(args)
 		local Target = API:FindPlayer(args[2])
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!!!A NUKE WAS PLACED ON "..Target.Name.." kiil everyone", "ALL")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!!!A NUKE HAS BEEN PLACED ON "..Target.Name.." kiil everyone", "ALL")
 		repeat task.wait()
 			if Target.Character and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health <1 then
 				break
@@ -2343,7 +2343,7 @@ do
 		until not game
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Target.Name.." IS DEAD NUKE everyone!!!", "ALL")
 		wait(1.5)
-		--//This is what I call perfect work 
+		--//This is what I call perfect work s
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("everyone in 3", "ALL")
 		wait(1.5)
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("everyone in 2", "ALL")			
