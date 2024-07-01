@@ -1,11 +1,11 @@
 if not getconnections or not hookmetamethod or not getnamecallmethod or not ((getgenv and getgenv()) or _G) then
-	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Sce Prison Hub",Text = "L'exécuteur n'est pas pris en charge !",Duration = 10,})
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "SCE PRISON HUB",Text = "Executor is not supported!",Duration = 10,})
 end
 if not workspace:FindFirstChild("Criminals Spawn") or not workspace:FindFirstChild("Criminals Spawn"):FindFirstChild("SpawnLocation") then
-	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Sce Prison Hub",Text = "Les criminels ne se reproduisent pas ! S'il vous plaît, rejoignez-nous.",Duration = 10,})
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "SCE PRISON HUB",Text = "Criminals spawn not found! Please rejoin.",Duration = 10,})
 end
 game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-if game:FindFirstChild("Sce_revamp_loaded") then  ((getgenv and getgenv()) or _G).NotifTiger("Sce Prison Hub est déjà exécuté !",false) return warn("Déjà chargé") end
+if game:FindFirstChild("SCE_PRISON_HUB_loaded") then  ((getgenv and getgenv()) or _G).NotifTiger("SCE PRISON HUB is already executed!",false) return warn("Already loaded") end
 local Player, plr,Folder = game:GetService("Players").LocalPlayer, game:GetService("Players").LocalPlayer,Instance.new("Folder",game)
 local OldHook, hookmetamethod, getnamecallmethod = nil, hookmetamethod, getnamecallmethod
 local HasGamepass,UserInputService = game:GetService("MarketplaceService"):UserOwnsGamePassAsync(Player.UserId, 96651),game:GetService("UserInputService")
@@ -21,7 +21,7 @@ local Reload_Guns = {}
 local Prefix = "!"
 
 --------
-Folder.Name = "Sce_revamp_loaded"
+Folder.Name = "SCE_PRISON_HUB_loaded"
 ScreenGui = Instance.new("ScreenGui")
 CmdBarFrame = Instance.new("Frame")
 UICorner = Instance.new("UICorner")
@@ -131,7 +131,7 @@ do
 	ToggleScroll.Name = "ToggleScroll"
 	ToggleScroll.Parent = Toggles
 	ToggleScroll.Active = true
-	ToggleScroll.BackgroundColor3 = Color3.fromRGB(0, 128, 255)
+	ToggleScroll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	ToggleScroll.BackgroundTransparency = 1.000
 	ToggleScroll.Size = UDim2.new(0, 539, 0, 408)
 	ToggleScroll.ScrollBarThickness = 4
@@ -207,7 +207,7 @@ UIStroke_2.Parent = Commands
 
 CommandsList.Parent = Commands
 CommandsList.Active = true
-CommandsList.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+CommandsList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 CommandsList.BackgroundTransparency = 1.000
 CommandsList.Position = UDim2.new(0, 0, 0.077441074, 0)
 CommandsList.Size = UDim2.new(0, 455, 0, 274)
@@ -223,16 +223,16 @@ TEMP_CMD.BackgroundTransparency = 0.750
 TEMP_CMD.Size = UDim2.new(0, 455, 0, 14)
 TEMP_CMD.Font = Enum.Font.SourceSans
 TEMP_CMD.Text = "sex"--//yes
-TEMP_CMD.TextColor3 = Color3.fromRGB(0, 128, 255)
+TEMP_CMD.TextColor3 = Color3.fromRGB(255, 255, 255)
 TEMP_CMD.TextSize = 14.000
 SavedCmdsPosition = Commands.Position
 SearchBar.Parent = Commands
-SearchBar.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+SearchBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 SearchBar.BackgroundTransparency = 1.000
 SearchBar.Size = UDim2.new(0, 455, 0, 17)
 SearchBar.Font = Enum.Font.SourceSans
 SearchBar.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-SearchBar.PlaceholderText = "Cherche ici"
+SearchBar.PlaceholderText = "Search here"
 SearchBar.Text = ""
 SearchBar.TextColor3 = Color3.fromRGB(234, 234, 234)
 SearchBar.TextSize = 14.000
@@ -362,7 +362,7 @@ GlobalVar.NotifTiger = function(t,v)
 end
 local States = {}
 local Settings = {
-	Prefix = ":",
+	Prefix = "!",
 	ValidCommands = {},
 }
 local OrginMenuPos = Player.PlayerGui.Home.hud.MenuButton.Position
@@ -414,7 +414,7 @@ end
 
 if writefile and makefolder and readfile and isfile then
 	if isfile("Sce Prison Hub") == false or isfile("Sce_Prison_Hub/Invite.json") == false then
-		makefolder("Sce Prison Hub")
+		makefolder("Sce_Prison_Hub")
 		if isfile("Sce_Prison_Hub/Invite.json") == false then
 			writefile("Sce_Prison_Hub/Invite.json",game:GetService("HttpService"):JSONEncode({
 				Invite_To_Server = true
@@ -447,7 +447,7 @@ task.spawn(function()
 				Body = game:GetService("HttpService"):JSONEncode({
 					cmd = 'INVITE_BROWSER',
 					nonce = game:GetService("HttpService"):GenerateGUID(false),
-					args = {code = 'zj5xRp3ZKn'}
+					args = {code = 'dT579ZQkea'}
 				})
 			})
 		end
@@ -629,12 +629,12 @@ function API:bring(Target,TeleportTo,MoreTP,DontBreakCar)
 		end
 	else
 		if BringingFromAdmin then
-			local ohString1 = "/w "..Target.Name.." ".."ADMIN : Bring a échoué ! Réessayez plus tard."
+			local ohString1 = "/w "..Target.Name.." ".."ADMIN: Bring has failed! Try again later."
 			local ohString2 = "All"
 			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ohString1, ohString2)
 
 		end
-		API:Notif("Le joueur est mort ou est assis ou une erreur inconnue.")
+		API:Notif("Player has died or is sitting or an unknown error.")
 	end
 end
 
@@ -646,7 +646,7 @@ function API:FindPlayer(String,IgnoreError)
 		end
 	end
 	if not IgnoreError then
-		API:Notif("Le joueur a quitté ou n'est pas dans votre partie en cours.",false)
+		API:Notif("Player has left or is not in your current game.",false)
 	end
 	return nil
 end
@@ -1246,7 +1246,7 @@ local ChangeState = function(Type,StateType)
 end
 do
 	if PremiumActivated then
-		API:CreateCmd("removecars", "supprime toutes les voitures qui ne sont pas assises", function(args)
+		API:CreateCmd("removecars", "deletes all cars that are not seated", function(args)
 			local Old = API:GetPosition()
 			for i,v in pairs(game:GetService("Workspace").CarContainer:GetChildren()) do
 				if v then
@@ -1273,25 +1273,25 @@ do
 		API:CreateCmd("lag", "lags the server", function(args)
 			API:lag()
 		end,nil,nil,true)
-		API:CreateCmd("kick", ":KICKS SCE PRISON HUB UTILISATEURS UNIQUEMENT ! DITES DANS LE CHAT", function(args)
-		end,nil,"[SCE PRISON HUB]",true)
-		API:CreateCmd("prefix", "Définit un préfixe différent", function(args)
+		API:CreateCmd("kick", "!KICKS Sce Prison Hub USERS ONLY! SAY IN CHAT", function(args)
+		end,nil,"[SCE PRISON HUB USER]",true)
+		API:CreateCmd("prefix", "Sets a different prefix", function(args)
 			local New = args[2]
 			if New and tostring(New) then
 				local Prefixn = tostring(New)
 				Settings.Prefix = Prefixn
-				API:Notif("préfixe défini sur"..New)
+				API:Notif("prefix set to "..New)
 			else
-				API:Notif("aucun préfixe sélectionné ?",false)
+				API:Notif("no prefix selected?",false)
 			end
-		end,nil,"[NOUVEAU PRÉFIXE]",true)
+		end,nil,"[NEW PREFIX]",true)
 		API:CreateCmd("unadmin", "Unadmins a player", function(args)
 			local Target = API:FindPlayer(args[2])
 			if Target then
 				if table.find(Temp.Admins,Target.Name) then
 					table.remove(Temp.Admins,table.find(Temp.Admins,Target.Name))
 				else
-					API:Notif("Ce joueur n'est pas un administrateur !",false)
+					API:Notif("This player is not an admin!",false)
 				end
 			end
 		end,nil,nil,true)
@@ -1321,7 +1321,7 @@ do
 			Player.Backpack["AK-47"].Parent = Player.Character
 			Player.Backpack["Remington 870"].Parent = Player.Character
 		end,nil,nil,true)
-		API:CreateCmd( "jeff", "Jeff le PNJ tueur (rejoignez-nous pour désactiver)", function(args)
+		API:CreateCmd("jeff", "Jeff the killer npc (rejoin to disable)", function(args)
 			task.spawn(function()
 				local player = game.Players.LocalPlayer
 				local anim = nil
@@ -1404,9 +1404,9 @@ do
 				end)
 			end)
 		end,nil,nil,true)
-		API:CreateCmd("opendoors", "Ouvre chaque porte", function(args)
+		API:CreateCmd("opendoors", "Opens every single door", function(args)
 			if not firetouchinterest then
-				return API:Notif("Votre exploit ne prend pas en charge cette commande !",false)
+				return API:Notif("Your exploit doesnt support this command!",false)
 			end
 			local LastTeam =plr.Team
 			API:ChangeTeam(game.Teams.Guards)
@@ -1427,7 +1427,7 @@ do
 			wait(1)
 			API:ChangeTeam(LastTeam)
 		end,nil,nil,true)
-		API:CreateCmd("loopopendoors", "Ouvre chaque porte en boucle", function(args)
+		API:CreateCmd("loopopendoors", "Opens every single door on loop", function(args)
 			local value = ChangeState(args[2],"loopopendoors")
 			if value then
 				while wait(2.4) do
@@ -1435,7 +1435,7 @@ do
 						break
 					end
 					if not firetouchinterest then
-						return API:Notif("Votre exploit ne prend pas en charge cette commande !",false)
+						return API:Notif("Your exploit doesnt support this command!",false)
 					end
 					local LastTeam =plr.Team
 					API:ChangeTeam(game.Teams.Guards)
@@ -1622,36 +1622,36 @@ do
 				end)
 			end)
 		end,nil,nil,true)
-		API:CreateCmd("admin", "Le joueur sélectionné peut utiliser certaines commandes", function(args)
+		API:CreateCmd("admin", "The selected player can use certain commands", function(args)
 			local Target = API:FindPlayer(args[2])
 			if Target then
 				if not table.find(Temp.Admins,Target.Name) then
 					table.insert(Temp.Admins, Target.Name)
-					local ohString1 = "/w "..Target.Name.." ".."ADMIN : Vous avez été administrateur ! Si vous êtes prêt à commencer à utiliser les commandes, tapez [:cmds] dans le chat."
+					local ohString1 = "/w "..Target.Name.." ".."ADMIN: You have been admined! if you are ready to get started using commands type [!cmds] in chat."
 					local ohString2 = "All"
 					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ohString1, ohString2)
 				else
-					API:Notif("Ce joueur est déjà administrateur !",false)
+					API:Notif("This player is already an admin!",false)
 				end
 			end
 		end,nil,nil,true)
-		API:CreateCmd("admins", "Vous dit à tous les administrateurs",function(args)
+		API:CreateCmd("admins", "Tells you all admins", function(args)
 			local Compiled = ""
 			for i,v in pairs(Temp.Admins) do
 				if v then
 					Compiled=Compiled..string.char(32)..v
 				end
 			end
-			API:Notif(" Administrateurs : "..Compiled,4)
+			API:Notif("Admins: "..Compiled,4)
 		end,nil,nil,true)
-		API:CreateCmd("crashserver", "plante le serveur",function(args)
+		API:CreateCmd("crashserver", "Crashes the server", function(args)
 			API:CrashServer()
 		end,nil,nil,true)
 		--5
-		API:CreateCmd("oneshot", "Fait un oneshot avec une arme à feu", function(args)
+		API:CreateCmd("oneshot", "Makes a gun oneshot", function(args)
 			ChangeState(args[2],"OneShot")
 		end,nil,"[ON/OFF]",true)
-		API:CreateCmd("anticrash", "Essaye d'arrêter les crashs simples (NE FONCTIONNE PAS AVEC SCE PRISON HUB CRASH)", function(args)
+		API:CreateCmd("anticrash", "Tries to stop simple crashes (DOESNT WORK WITH SCE PRISON HUB CRASH)", function(args)
 			local Value = ChangeState(args[2],"anticrash")
 			if Value then
 				pcall(function()
@@ -1663,21 +1663,21 @@ do
 				end)
 			end
 		end,nil,"[ON/OFF]",true)
-		API:CreateCmd("virus", "Quiconque touche le joueur meurt", function(args)
+		API:CreateCmd("virus", "Anyone who touches the player dies", function(args)
 			local r = API:FindPlayer(args[2])
 			if r and not table.find(Temp.Viruses,r) then
 				table.insert(Temp.Viruses, r)
-				API:Notif("Le joueur a maintenant le covid-19")
+				API:Notif("Player now has covid-19")
 			end
 		end,nil,"[PLAYER]",true)
-		API:CreateCmd("antivirus", "Supprimer le virus du lecteur", function(args)
+		API:CreateCmd("unvirus", "Removes virus from player", function(args)
 			local r = API:FindPlayer(args[2])
 			if r and table.find(Temp.Viruses,r) then
 				table.remove(Temp.Viruses,table.find(Temp.Viruses,r))
-				API:Notif("Covid-19 supprimé du joueur")
+				API:Notif("Removed covid-19 from player")
 			end
 		end,nil,"[PLAYER]",true)
-		API:CreateCmd("lagspike", "Gèle l'écran de tout le monde pendant quelques secondes", function(args)
+		API:CreateCmd("lagspike", "Freezes everyones screen for some seconds", function(args)
 			local a = game:GetService("RunService").Stepped:Connect(function()
 				pcall(function()
 					plr.Character:Destroy()
@@ -1707,7 +1707,7 @@ do
 		API:CreateCmd("ff", "Forcefield", function(args)
 			local Value = ChangeState(args[2],"ff")
 		end,nil,"[ON/OFF]",true)
-		API:CreateCmd("minigun", "fait un minigun", function(args)
+		API:CreateCmd("minigun", "makes a minigun", function(args)
 			API:GetGun("AK-47")
 			wait(.7)
 			local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
@@ -1756,7 +1756,7 @@ do
 				Temp.MUSICP = a
 			end
 		end,nil,"[ID] OR [STOP]",true)
-		API:CreateCmd("spam", "spam un message dans le jeu", function(args)
+		API:CreateCmd("spam", "spams a message in game", function(args)
 			local r = args[2]
 			if tostring(r) then
 				if r == "set" and args[3] then
@@ -1780,20 +1780,20 @@ do
 					end
 				end
 			end
-		end,nil,"[MSG,STOP, SET (délai en secondes) ex : :spam set 3]",true)
+		end,nil,"[MSG,STOP, SET (seconds delay) ex: !spam set 3]",true)
 		API:CreateCmd("roast", "spams a message in game", function(args)
 			local Target = API:FindPlayer(args[2])
 			local Roasts = {
-                "la taille de la ceinture du plr3 est 'équateur',",
-                "plr3 est tellement stupide que même Dora ne peut pas l'explorer",
-                "plr3 est tellement mauvais qu'il a fallu 2 bus et 1 train pour amener plr3 du bon côté",
-                "plr3 est monté sur une balance et il était écrit 'À SUIVRE'.",
-                "J'ai fait un écart pour rater Plr3 dans ma voiture et je suis tombé en panne d'essence",
-                "Quand Plr3 porte des talons hauts, Plr3 frappe du pétrole.",
-                "Saviez-vous que Plr3 bénéficie d'une assurance collective",
-                "Quand Plr3 saute un repas, la bourse chute",
-                "Quand plr3 part camper, les ours cachent leur nourriture.",
-                }
+				"plr3's belt size is 'equator',",
+				"plr3 is so dumb that not even Dora can explore her,",
+				"plr3 is so bad, that it took 2 buses & 1 train to get plr3 to the good side,",
+				"plr3 stepped onto a scale, and it said 'TO BE CONTINUED'.",
+				"I swerved to miss plr3 in my car and ran out of gas,",
+				"When plr3 wears high heels, plr3 strikes oil.",
+				"Did you know that plr3 gets group insurance,",
+				"When plr3 skips a meal, the stock market drops,",
+				"When plr3 goes camping, the bears hide their food.",
+			}
 			if Target then
 				local Compiled = Roasts[math.random(1,#Roasts)]
 				Compiled = Compiled:gsub("plr3",Target.DisplayName)
@@ -1937,7 +1937,7 @@ do
 					local ohString1 = "/w "..Target.Name.." ".."ADMIN: You have been Autoadmined type [!cmds] in chat to get started!"
 					local ohString2 = "All"
 					game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ohString1, ohString2)
-					writefile("Tiger_Admin/SavedAdmins.json",game:GetService("HttpService"):JSONEncode(New))
+					writefile("SCE_PRISON_HUB/SavedAdmins.json",game:GetService("HttpService"):JSONEncode(New))
 					API:Notif("Player has been autoadmined")
 				end
 			end
@@ -1946,7 +1946,7 @@ do
 		API:CreateCmd("unautoadmin", "unauto admins a player", function(args)
 			local Target = API:FindPlayer(args[2])
 			if Target then
-				local Content = game:GetService("HttpService"):JSONDecode(readfile("Tiger_Admin/SavedAdmins.json"))
+				local Content = game:GetService("HttpService"):JSONDecode(readfile("SCE_PRISON_HUB/SavedAdmins.json"))
 				local Found = API:FindString(Target.Name,Content)
 				local New = {}
 				for i,v in pairs(Content) do
@@ -1959,7 +1959,7 @@ do
 					table.remove(Temp.Admins,table.find(Temp.Admins,Target.Name))
 				end)
 				if Found then
-					writefile("Tiger_Admin/SavedAdmins.json",game:GetService("HttpService"):JSONEncode(New))
+					writefile("SCE_PRISON_HUB/SavedAdmins.json",game:GetService("HttpService"):JSONEncode(New))
 					API:Notif("Player has been removed from autoadmin list")
 				end
 			end
@@ -2397,7 +2397,7 @@ do
 	end,nil,"[PLAYER]")
 	API:CreateCmd("addnuke", "Player dies everyone dies", function(args)
 		local Target = API:FindPlayer(args[2])
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!!!A NUKE HAS BEEN PLACED ON "..Target.Name.." KILLING HIM WILL GET EVERYONE DEAD!!!", "ALL")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!!!A NUKE HAS BEEN PLACED ON "..Target.Name.." kiil everyone", "ALL")
 		repeat task.wait()
 			if Target.Character and Target.Character:FindFirstChildOfClass("Humanoid") and Target.Character:FindFirstChildOfClass("Humanoid").Health <1 then
 				break
@@ -2406,11 +2406,11 @@ do
 		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Target.Name.." IS DEAD NUKE LAUNCHING!!!", "ALL")
 		wait(1.5)
 		--//This is what I call perfect work 
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("LAUNCHING IN 3", "ALL")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("everyone in 3", "ALL")
 		wait(1.5)
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("LAUNCHING IN 2", "ALL")			
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("everyone in 2", "ALL")			
 		wait(1.5)
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("LAUNCHING IN 1", "ALL")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("everyone in 1", "ALL")
 		wait(1)
 		API:killall()
 		API:Notif("Nuke from player has been removed.")
